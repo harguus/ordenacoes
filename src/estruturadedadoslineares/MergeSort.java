@@ -11,9 +11,9 @@ public class MergeSort {
         int auxDireito[] = new int [subDireito];
 
         //copia para os arrays temporários
-        for (int i=0; i<subEsquerdo; ++i)
+        for (int i = 0; i < subEsquerdo; ++i)
             auxEsquerdo[i] = arr[esquerdo + i];
-        for (int j=0; j<subDireito; ++j)
+        for (int j = 0; j < subDireito; ++j)
             auxDireito[j] = arr[meio + 1+ j];
 
 
@@ -48,19 +48,16 @@ public class MergeSort {
 
     void sort(int arr[], int esquerda, int direita){
         if (esquerda < direita){
-
             int meio = (esquerda + direita) / 2;
-
             sort(arr, esquerda, meio);
             sort(arr , meio + 1, direita);
-
             merge(arr, esquerda, meio, direita);
         }
     }
 
     static void printArray(int arr[]){
         int n = arr.length;
-        for (int i=0; i < n; ++i)
+        for (int i = 0; i < n; ++i)
             System.out.print(arr[i] + " ");
         System.out.println();
     }
