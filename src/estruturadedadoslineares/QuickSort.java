@@ -2,8 +2,6 @@ package estruturadedadoslineares;
 
 public class QuickSort {
 
-    //https://www.geeksforgeeks.org/quick-sort/
-
     int particao(int arr[], int menor, int maior){
         int pivor = arr[maior];
         int iMenor = ( menor - 1 );
