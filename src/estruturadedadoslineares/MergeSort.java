@@ -1,5 +1,9 @@
 package estruturadedadoslineares;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
 public class MergeSort {
 
     void merge(int arr[], int esquerdo, int meio, int direito){
@@ -62,16 +66,56 @@ public class MergeSort {
         System.out.println();
     }
 
-    public static void main(String args[]){
-        int arr[] = {12, 11, 13, 5, 6, 7};
+    public static void main(String args[]) throws FileNotFoundException {
+        String[] files = new String[9];
+        files[0] = "teste_1000_1.dat";
+        files[1] = "teste_1000_2.dat";
+        files[2] = "teste_1000_3.dat";
+        files[3] = "teste_10000_1.dat";
+        files[4] = "teste_10000_2.dat";
+        files[5] = "teste_10000_3.dat";
+        files[6] = "teste_100000_1.dat";
+        files[7] = "teste_100000_2.dat";
+        files[8] = "teste_100000_3.dat";
 
-        System.out.println("\nArray para ser ordenado");
-        printArray(arr);
+        int[] tamanho = new int[9];
+        tamanho[0] = 1001;
+        tamanho[1] = 1001;
+        tamanho[2] = 1001;
+        tamanho[3] = 10001;
+        tamanho[4] = 10001;
+        tamanho[5] = 10001;
+        tamanho[6] = 100001;
+        tamanho[7] = 100001;
+        tamanho[8] = 100001;
 
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(arr, 0, arr.length-1);
+        //laço para gerar os vetores
+        for (int i=0;i<9;i++){
 
-        System.out.println("\nArray ordenado");
-        printArray(arr);
+            int arr[] = new int[tamanho[i]];
+            int count = 0;
+            Scanner scanner = new Scanner(new FileReader("/home/rodrigo/Projects/algoritmos-de-ordenacao/input/" + files[i]));
+
+            while (scanner.hasNext()) {
+
+                int valor = scanner.nextInt();
+                arr[count] = valor;
+                count++;
+                //System.out.println(valor);
+            }
+
+            //System.out.println("\nArray para ser ordenado");
+
+            MergeSort mergeSort = new MergeSort();
+            long start = System.currentTimeMillis();
+            mergeSort.sort(arr, 0, arr.length-1);
+            long tempo = System.currentTimeMillis() - start;
+
+            System.out.println(files[i]+ " : " + tempo);
+
+            //System.out.println("\nArray ordenado");
+            //printArray(arr);
+        }
+
     }
 }
